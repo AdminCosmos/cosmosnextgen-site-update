@@ -1,3 +1,55 @@
+import React from "react";
+
+/**
+ * Animated counter — counts from 0 to `end` once it scrolls into view.
+ * Runs only once per page load.
+ *   end       — final numeric value (e.g. 120, 99.99, 94)
+ *   suffix    — text appended after the number (e.g. "+", "%")
+ *   decimals  — how many decimal places to display
+ *   duration  — milliseconds to animate over (default 1500)
+ */
+function Counter({ end, suffix = "", decimals = 0, duration = 1500 }) {
+  const ref = React.useRef(null);
+  const [value, setValue] = React.useState(0);
+  const playedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !playedRef.current) {
+          playedRef.current = true;
+          const startTs = performance.now();
+          const tick = (now) => {
+            const elapsed = now - startTs;
+            const progress = Math.min(elapsed / duration, 1);
+            // easeOutCubic — fast then slow, feels natural
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setValue(end * eased);
+            if (progress < 1) requestAnimationFrame(tick);
+            else setValue(end);
+          };
+          requestAnimationFrame(tick);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [end, duration]);
+
+  return (
+    <strong ref={ref}>
+      {value.toFixed(decimals)}
+      {suffix}
+    </strong>
+  );
+}
+
 export default function Hero() {
   return (
     <section id="home" className="hero">
@@ -68,17 +120,17 @@ export default function Hero() {
           {/* Inline trust strip */}
           <div className="heroProof" aria-label="Track record">
             <div className="heroProofItem">
-              <strong>120+</strong>
+              <Counter end={120} suffix="+" />
               <span>Projects shipped</span>
             </div>
             <span className="heroProofDivider" aria-hidden="true" />
             <div className="heroProofItem">
-              <strong>99.99%</strong>
+              <Counter end={99.99} suffix="%" decimals={2} />
               <span>Platform uptime</span>
             </div>
             <span className="heroProofDivider" aria-hidden="true" />
             <div className="heroProofItem">
-              <strong>94%</strong>
+              <Counter end={94} suffix="%" />
               <span>Client retention</span>
             </div>
           </div>
@@ -370,6 +422,7 @@ export default function Hero() {
           color: #f5f5f5;
           letter-spacing: -0.01em;
           line-height: 1;
+          font-variant-numeric: tabular-nums;
         }
 
         .heroProofItem span {
