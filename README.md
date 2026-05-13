@@ -19,7 +19,7 @@ cosmosnextgen-site/
 │   └── api/
 │       └── contact.js          # Cloudflare Pages Function — POST /api/contact
 ├── public/
-│   ├── _redirects              # SPA fallback for client-side routing
+│   ├── /* /index.html 200              # SPA fallback for client-side routing
 │   ├── favicon.ico
 │   └── images/                 # All visual assets (WebP)
 ├── src/
@@ -104,7 +104,7 @@ Deployed automatically on push to `main` via Cloudflare Pages. Build settings:
 - **Build output directory:** `dist`
 - **Root directory:** `/`
 
-`public/_redirects` contains `/* /index.html 200` so client-side routes (like `/training`) resolve correctly when hit directly.
+`public//* /index.html 200` contains `/* /index.html 200` so client-side routes (like `/training`) resolve correctly when hit directly.
 
 ## Routes
 
