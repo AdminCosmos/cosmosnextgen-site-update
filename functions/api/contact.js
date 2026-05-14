@@ -15,6 +15,7 @@ const ALLOWED_ORIGINS = [
     "https://cosmosnextgen.com",
     "https://www.cosmosnextgen.com",
     "https://cosmos-test2.pages.dev",
+    "https://cosmos-test-finally.pages.dev",
 ];
 
 // In-memory rate-limit store. Resets per worker instance (good enough as a basic abuse brake;

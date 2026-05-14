@@ -163,7 +163,7 @@ export default function Contact() {
           margin-top: 4px;
           background: linear-gradient(135deg, #ff6b4a, #f7b733);
           border: none;
-          color: #000000;
+          color: #f5f5f5;
           padding: 0 18px;
           border-radius: 10px;
           font-weight: 850;
