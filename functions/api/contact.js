@@ -191,11 +191,3 @@ export async function onRequestPost(context) {
         return jsonResponse({ error: "Service temporarily unavailable." }, 500);
     }
 }
-
-// Block all other methods explicitly. (No GET handler that leaks endpoint existence.)
-export async function onRequest(context) {
-    if (context.request.method === "POST") {
-        return onRequestPost(context);
-    }
-    return new Response("Method Not Allowed", { status: 405, headers: { Allow: "POST" } });
-}
