@@ -11,38 +11,7 @@ Marketing website for [COSMOS NextGen IT LLC](https://cosmosnextgen.com), built 
 
 No CSS framework. Each component carries its own `<style>` block.
 
-## Project structure
 
-```
-cosmosnextgen-site/
-├── functions/
-│   └── api/
-│       └── contact.js          # Cloudflare Pages Function — POST /api/contact
-├── public/
-│   ├── /* /index.html 200              # SPA fallback for client-side routing
-│   ├── favicon.ico
-│   └── images/                 # All visual assets (WebP)
-├── src/
-│   ├── components/
-│   │   ├── App.jsx             # Router + page composition
-│   │   ├── Navbar.jsx          # Sticky header with active-section scroll-spy
-│   │   ├── Hero.jsx            # Landing hero
-│   │   ├── About.jsx
-│   │   ├── Services.jsx
-│   │   ├── WhyUs.jsx
-│   │   ├── Contact.jsx         # Form posts to /api/contact
-│   │   ├── Careers.jsx
-│   │   ├── Footer.jsx
-│   │   ├── Training.jsx        # Standalone /training route
-│   │   ├── TrustLogos.jsx
-│   │   ├── CaseStudies.jsx     # (unused — not currently rendered)
-│   │   └── ScrollToHash.jsx    # Smooth-scroll to #anchor on route change
-│   ├── styles/
-│   │   └── globals.css
-│   └── main.jsx
-├── index.html
-├── vite.config.js
-└── package.json
 ```
 
 ## Local development
